@@ -122,9 +122,7 @@ function handleItemClick() {
                 grid.innerHTML= ""
             }
             
-           
-
-
+        
         } else if (scoreArray.length < (numberOfSquare - 16) && !scoreArray.includes(clickedNumber)){
             this.classList.add("orange");
             scoreArray.push(clickedNumber)
