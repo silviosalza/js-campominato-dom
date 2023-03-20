@@ -24,18 +24,22 @@
 const grid = document.querySelector(".grid")
 const play = document.querySelector(".btnPlay")
 let bombs = []
+let scoreArray = []
+let numberOfSquare = 0
+let score = ""
 
 play.addEventListener("click" , function(){
     
     let difficult = document.querySelector(".select")
     console.log(difficult);
-    let numberOfSquare = parseInt(difficult.options[difficult.selectedIndex].value);
+    numberOfSquare = parseInt(difficult.options[difficult.selectedIndex].value);
     console.log(numberOfSquare);
     let numbersArray = getNumberArray(numberOfSquare)
-    bombs = generateBombs(16 , 100)
+    bombs = generateBombs(16 ,numberOfSquare)
     console.log(bombs);
 
     grid.innerHTML = ""
+    ptsCounter = 0
     for (let i = 0; i < numbersArray.length ; i++){
 
 
@@ -104,19 +108,26 @@ function getRndInteger(min, max) {
 
 function handleItemClick() {
     
-   
-    //lego il testo dentro il tag span e lo affido alla costante clickednumber
+
+    //leggo il testo dentro il tag span e lo affido alla costante clickednumber
     const clickedNumber = parseInt(this.querySelector("span").textContent);
-     if (bombs.includes(clickedNumber)){
-         this.classList.add("red");
-         
-    } else {
+        if (bombs.includes(clickedNumber)){
+            this.classList.add("red");
+            alert("KABOOOOOM")
+            alert(`FINAL SCORE : ${score}`)
+
+        } else if (scoreArray.length<= numberOfSquare - 16 && !scoreArray.includes(clickedNumber)){
+            this.classList.add("orange");
+            scoreArray.push(clickedNumber)
+            score = `${scoreArray.length} pts.`
+        }  
+        console.log(`Hai scelto il numero ${clickedNumber}`);
+        console.log(score);
         
-        this.classList.add("orange");
-    }
-   
-    
-    console.log(`Hai scelto il numero ${clickedNumber}`);
-    
+        
 }
 
+function generateScore(){
+
+
+}
