@@ -23,7 +23,7 @@
 
 const grid = document.querySelector(".grid")
 const play = document.querySelector(".btnPlay")
-
+let bombs = []
 
 play.addEventListener("click" , function(){
     
@@ -32,7 +32,7 @@ play.addEventListener("click" , function(){
     let numberOfSquare = parseInt(difficult.options[difficult.selectedIndex].value);
     console.log(numberOfSquare);
     let numbersArray = getNumberArray(numberOfSquare)
-    let bombs = generateBombs(16 , 100)
+    bombs = generateBombs(16 , 100)
     console.log(bombs);
 
     grid.innerHTML = ""
@@ -42,7 +42,7 @@ play.addEventListener("click" , function(){
         const currentNumber = numbersArray[i]
         const newItem = generateGridItem(currentNumber)
         grid.append(newItem)
-        newItem.addEventListener("click", handleItemClick, bombs)
+        newItem.addEventListener("click", handleItemClick)
 
         if (numberOfSquare === 81){
             newItem.classList.remove("easy")
@@ -104,13 +104,14 @@ function getRndInteger(min, max) {
 
 function handleItemClick() {
     
-   const bombs = [1,2,3,4,5,6,7,8,9]
+   
     //lego il testo dentro il tag span e lo affido alla costante clickednumber
     const clickedNumber = parseInt(this.querySelector("span").textContent);
      if (bombs.includes(clickedNumber)){
          this.classList.add("red");
          
     } else {
+        
         this.classList.add("orange");
     }
    
