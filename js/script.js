@@ -36,6 +36,7 @@ play.addEventListener("click" , function(){
     console.log(numberOfSquare);
     let numbersArray = getNumberArray(numberOfSquare)
     bombs = generateBombs(16 ,numberOfSquare)
+    
     console.log(bombs);
 
     grid.innerHTML = ""
@@ -111,23 +112,31 @@ function handleItemClick() {
 
     //leggo il testo dentro il tag span e lo affido alla costante clickednumber
     const clickedNumber = parseInt(this.querySelector("span").textContent);
-        if (bombs.includes(clickedNumber)){
-            this.classList.add("red");
-            alert("KABOOOOOM")
-            alert(`FINAL SCORE : ${score}`)
 
-        } else if (scoreArray.length<= numberOfSquare - 16 && !scoreArray.includes(clickedNumber)){
+        if (bombs.includes(clickedNumber)){
+            alert("KABOOOOOM")
+            this.classList.add("red");
+            alert(`FINAL SCORE : ${score}`)
+            setTimeout(reset , 400)
+            function reset(){
+                grid.innerHTML= ""
+            }
+            
+           
+
+
+        } else if (scoreArray.length < (numberOfSquare - 16) && !scoreArray.includes(clickedNumber)){
             this.classList.add("orange");
             scoreArray.push(clickedNumber)
             score = `${scoreArray.length} pts.`
-        }  
+                if (scoreArray.length === (numberOfSquare - 16)){
+                    alert("HAI VINTO!!")
+                }
+        }
+
         console.log(`Hai scelto il numero ${clickedNumber}`);
-        console.log(score);
+        console.log(`SCORE : ${score}`)
+
         
         
-}
-
-function generateScore(){
-
-
 }
