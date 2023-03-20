@@ -120,6 +120,7 @@ function handleItemClick() {
             setTimeout(reset , 600)
             function reset(){
                 grid.innerHTML= ""
+                scoreArray = []
             }
             
         
@@ -132,9 +133,14 @@ function handleItemClick() {
                     setTimeout(reset , 600)
                     function reset(){
                         grid.innerHTML= ""
-            }
+                        scoreArray = []
+                    }
                 }
-        }
+            }
+                        
+            
+               
+        
 
         console.log(`Hai scelto il numero ${clickedNumber}`);
         console.log(`SCORE : ${score}`)
