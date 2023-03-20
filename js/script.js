@@ -40,7 +40,7 @@ play.addEventListener("click" , function(){
     console.log(bombs);
 
     grid.innerHTML = ""
-    ptsCounter = 0
+    scoreArray = []
     for (let i = 0; i < numbersArray.length ; i++){
 
 
@@ -117,7 +117,7 @@ function handleItemClick() {
             alert("KABOOOOOM")
             this.classList.add("red");
             alert(`FINAL SCORE : ${score}`)
-            setTimeout(reset , 400)
+            setTimeout(reset , 600)
             function reset(){
                 grid.innerHTML= ""
             }
@@ -129,6 +129,10 @@ function handleItemClick() {
             score = `${scoreArray.length} pts.`
                 if (scoreArray.length === (numberOfSquare - 16)){
                     alert("HAI VINTO!!")
+                    setTimeout(reset , 600)
+                    function reset(){
+                        grid.innerHTML= ""
+            }
                 }
         }
 
